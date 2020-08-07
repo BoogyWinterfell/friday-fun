@@ -1,0 +1,2 @@
+class Tile(object):
+    pass
