@@ -15,7 +15,7 @@ class DungeonCrawlGame(Game):
         game_state_copy = GameInfo(game_state.players, game_state.get_round_number())
 
         for actions in zip(*player_inputs):
-            self.resolve_actions_simultaneously(actions, game_state_copy)
+            self.resolve_actions(actions, game_state_copy)
 
         return game_state_copy
 
