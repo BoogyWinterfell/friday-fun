@@ -1,9 +1,6 @@
-import abc
-
-from Abstract.GameInfo import GameInfo
+from typing import TypedDict
 
 
-class GameAction(metaclass=abc.ABCMeta):
-    @abc.abstractmethod
-    def execute(self, game: GameInfo):
-        pass
+class GameAction(TypedDict):
+    action_name: str
+    action_owner_name: str

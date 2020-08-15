@@ -1,15 +1,16 @@
-import abc
-from typing import Tuple
+from typing import Tuple, List
 
 from Abstract.Bot import Bot
 from Abstract.GameAction import GameAction
+from Abstract.GameEngine import GameEngine
 from Abstract.GameInfo import GameInfo
 
 
-class Game(metaclass=abc.ABCMeta):
-    def __init__(self, players: Tuple[Bot], initial_state: GameInfo):
+class GameRunner:
+    def __init__(self, engine: GameEngine, players: Tuple[Bot], initial_state: GameInfo):
         self.players = players
         self._round_number = 0
+        self.engine = engine
         initial_state.players = players
         self.game_log = [initial_state]
 
@@ -27,15 +28,10 @@ class Game(metaclass=abc.ABCMeta):
         self.game_log.append(new_game_state)
         return new_game_state
 
-    def read_player_inputs(self, player_inputs) -> GameInfo:
+    def read_player_inputs(self, player_inputs: List[List[GameAction]]) -> GameInfo:
         game_state = self.game_log[self._round_number]
-        game_state_copy = GameInfo(game_state.players, game_state.get_round_number())
+        game_state_copy = GameInfo(game_state.players, game_state.round_number)
 
-        for actions in zip(*player_inputs):
-            self.resolve_actions(actions, game_state_copy)
+        self.engine.resolve_actions(player_inputs, game_state_copy)
 
         return game_state_copy
-
-    @abc.abstractmethod
-    def resolve_actions(self, actions: Tuple[GameAction], game_state: GameInfo):
-        pass
