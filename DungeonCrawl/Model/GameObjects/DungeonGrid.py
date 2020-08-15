@@ -1,6 +1,6 @@
 from typing import List
 
-from DungeonCrawl.Tile import Tile
+from DungeonCrawl.Model.GameObjects.Tile import Tile
 
 
 class DungeonGrid(object):
