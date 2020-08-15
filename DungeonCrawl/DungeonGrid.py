@@ -1,11 +1,13 @@
+from typing import List
+
 from DungeonCrawl.Tile import Tile
 
 
 class DungeonGrid(object):
-    def __init__(self, rows: int, columns: int):
+    def __init__(self, tiles: List[Tile], rows: int = 10, columns: int = 10):
         self.map = []
-        for row in range(1, rows):
+        for row in range(0, rows - 1):
             self.map.append([])
-            for column in range(1, columns):
-                self.map[row].append(Tile())
+            for column in range(0, columns - 1):
+                self.map[row].append(tiles.pop(0))
 
