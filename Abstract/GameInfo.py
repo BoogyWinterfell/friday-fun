@@ -5,5 +5,5 @@ class GameInfo:
         self.round_number = round_number
 
     def get_round_number(self):
-        return self._round_number
+        return self.round_number
 
