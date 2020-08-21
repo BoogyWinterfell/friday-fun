@@ -1,5 +1,9 @@
+from typing import Dict
+
+from Abstract.Bot import Bot
+
 
 class GameInfo:
-    def __init__(self, players, round_number=0):
+    def __init__(self, players: Dict[str, Bot], round_number=0):
         self.players = players
         self.round_number = round_number
