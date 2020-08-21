@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 
 from DungeonCrawl.Model.GameObjects.Tile import Tile
 
@@ -11,3 +11,5 @@ class DungeonGrid(object):
             for column in range(0, columns - 1):
                 self.map[row].append(tiles.pop(0))
 
+    def __getitem__(self, key: Tuple[int]):
+        return self.map[key[0]][key[1]]
