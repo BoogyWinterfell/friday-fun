@@ -1,10 +1,8 @@
 from typing import List
 
-from DungeonCrawl.Model.GameObjects.Abstract.GameObject import GameObject
-from DungeonCrawl.Model.GameObjects.Treasure import Treasure
-from DungeonCrawl.Model.GameObjects.Abstract.Weapon import Weapon
+from DungeonCrawl.Model.GameObjects.Abstract.Entity import Entity
+from DungeonCrawl.Model.GameObjects.Abstract.Item import Item
 
 
-class Dungeoneer(GameObject):
-    weapons: List[Weapon]
-    treasure: List[Treasure]
+class Dungeoneer(Entity):
+    items: List[Item]
