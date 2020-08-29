@@ -1,24 +1,30 @@
-from typing import Tuple, List
+from typing import List
 
-from Abstract.Bot import Bot
 from Abstract.GameAction import GameAction
 from Abstract.GameEngine import GameEngine
 from Abstract.GameInfo import GameInfo
 
 
 class GameRunner:
-    def __init__(self, engine: GameEngine, players: Tuple[Bot], initial_state: GameInfo):
-        self.players = players
+    def __init__(self, engine: GameEngine, initial_state: GameInfo):
         self._round_number = 0
         self.engine = engine
-        initial_state.players = players
-        self.game_log = [initial_state]
+        self.initial_state = initial_state
+        self.game_log = [self.initial_state]
+
+# TODO: Win check
+    def run_game(self) -> List[GameInfo]:
+        for i in range(0, self.game_log[0].max_rounds):
+            self.game_log.append(self.run_round())
+
+        return self.game_log
 
     def run_round(self) -> GameInfo:
         player_inputs = []
-
-        for player in self.players:
-            player_inputs.append(player.play_round(self.game_log[self._round_number]))
+        current_state = self.game_log[self._round_number]
+        for name, player in current_state.players.items():
+            # TODO: exception handling
+            player_inputs.append(player.play_round(current_state))
 
         new_game_state = self.read_player_inputs(player_inputs)
 
