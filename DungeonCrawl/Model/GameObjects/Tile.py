@@ -1,8 +1,10 @@
 from typing import List
 
+from DungeonCrawl.Model.GameObjects.Abstract.GameObject import GameObject
+
 
 class Tile(object):
-    def __init__(self, walls_config: List[bool], objects_on_tile: List = None):
+    def __init__(self, walls_config: List[bool], objects_on_tile: List[GameObject] = None):
         if objects_on_tile is None:
             objects_on_tile = []
         self.left_wall = walls_config[0]

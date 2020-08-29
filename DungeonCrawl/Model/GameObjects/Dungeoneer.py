@@ -1,8 +1,8 @@
 from typing import List
 
-from DungeonCrawl.Model.GameObjects.Abstract.Entity import Entity
+from DungeonCrawl.Model.GameObjects.Abstract.GameObject import GameObject
 from DungeonCrawl.Model.GameObjects.Abstract.Item import Item
 
 
-class Dungeoneer(Entity):
+class Dungeoneer(GameObject):
     items: List[Item]
