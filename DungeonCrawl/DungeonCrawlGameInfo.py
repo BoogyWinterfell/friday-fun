@@ -1,3 +1,4 @@
+from queue import Queue
 from typing import Dict, List
 
 from Abstract.Bot import Bot
@@ -11,3 +12,4 @@ class DungeonCrawlGameInfo(GameInfo):
         super().__init__(players)
         self.respawn_time = respawn_time
         self.grid = DungeonGrid(tiles)
+        self.death_queue = Queue()
