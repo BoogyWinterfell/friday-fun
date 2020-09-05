@@ -1,5 +1,5 @@
-from DungeonCrawl.Model.GameObjects.Abstract.GameObject import GameObject
+from DungeonCrawl.Model.GameObjects.Abstract.DungeonCrawlGameObject import DungeonCrawlGameObject
 
 
-class Item(GameObject):
+class Item(DungeonCrawlGameObject):
     pass

@@ -6,7 +6,7 @@ from Abstract.GameInfo import GameInfo
 from DungeonCrawl.DungeonCrawlGameInfo import DungeonCrawlGameInfo
 from DungeonCrawl.DungeonCrawlUtils import count_dungeoneer_weapons, get_dungeoneer_items_by_type
 from DungeonCrawl.Model.Actions.MoveAction import MoveAction
-from DungeonCrawl.Model.GameObjects.Abstract.GameObject import GameObject
+from DungeonCrawl.Model.GameObjects.Abstract.DungeonCrawlGameObject import DungeonCrawlGameObject
 from DungeonCrawl.Model.GameObjects.Abstract.Item import Item
 from DungeonCrawl.Model.GameObjects.Abstract.Weapon import Weapon
 from DungeonCrawl.Model.GameObjects.Dungeoneer import Dungeoneer
@@ -73,7 +73,7 @@ class MoveActionResolver(ActionResolver):
                               loser['y_tile'], loser['initial_y'], loser['initial_x'])
 
     # TODO: Consider moving these functions to utilities, Reconsider entire Pure Data Design Decision.
-    def move_to_tile(self, game_state: DungeonCrawlGameInfo, object_to_move: GameObject, current_x, current_y, x, y):
+    def move_to_tile(self, game_state: DungeonCrawlGameInfo, object_to_move: DungeonCrawlGameObject, current_x, current_y, x, y):
         game_state.grid[current_x][current_y].objects_on_tile.pop(object_to_move)
         object_to_move['x_tile'] = x
         object_to_move['y_tile'] = y
