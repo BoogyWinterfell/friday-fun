@@ -1,14 +1,14 @@
-from typing import Tuple
+from typing import Tuple, List
 
+from Abstract.ActionResolver import ActionResolver
 from Abstract.GameAction import GameAction
 from Abstract.GameEngine import GameEngine
-from Abstract.GameInfo import GameInfo
+from Abstract.EngineGameInfo import EngineGameInfo
 
 
 class DungeonCrawlGameEngine(GameEngine):
-    def __init__(self, max_rounds=1000, respawn_time=20):
-        self.respawn_time = respawn_time
-        self.max_rounds = max_rounds
+    def __init__(self, resolvers: List[ActionResolver]):
+        self.resolvers = resolvers
 
-    def resolve_actions(self, actions: Tuple[GameAction], game_state: GameInfo):
+    def resolve_actions(self, actions: Tuple[GameAction], game_state: EngineGameInfo):
         pass

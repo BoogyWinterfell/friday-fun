@@ -1,10 +1,10 @@
 import abc
 from typing import List
 
-from Abstract.GameInfo import GameInfo
+from Abstract.EngineGameInfo import EngineGameInfo
 
 
 class WinCheck(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def search_for_winners(self, info: GameInfo) -> List[str]:
+    def search_for_winners(self, info: EngineGameInfo) -> List[str]:
         pass
