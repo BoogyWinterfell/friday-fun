@@ -1,5 +1,5 @@
 import abc
-from typing import List, Type
+from typing import List
 
 from Abstract.GameAction import GameAction
 from Abstract.EngineGameInfo import EngineGameInfo
