@@ -46,7 +46,7 @@ class GameRunner:
 
     def read_player_inputs(self, player_inputs: Dict[str, List[GameAction]]) -> EngineGameInfo:
         game_state = self.game_log[self._round_number]
-        game_state_copy = EngineGameInfo(game_state.players, game_state.round_number)
+        game_state_copy = EngineGameInfo(game_state.players, game_state.max_rounds, game_state.round_number)
 
         self.engine.resolve_actions(player_inputs, game_state_copy)
 
