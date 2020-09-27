@@ -12,4 +12,8 @@ class DungeonCrawlEngineGameInfo(EngineGameInfo):
         super().__init__(players, max_rounds, round_number)
         self.respawn_time = respawn_time
         self.grid = grid
-        self.death_queue = Queue()
+        # TODO: Implement death queue.
+        # self.death_queue = {}
+
+    def __str__(self):
+        return "Round:" + str(self.round_number) + " Players:" + str(self.players)

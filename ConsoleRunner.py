@@ -18,7 +18,13 @@ def main():
     win_checks = [TreasureWinCheck(2)]
     player_info_type = DungeonCrawlPlayerGameInfo
     runner = GameRunner(engine, info, win_checks, player_info_type)
-    runner.run_game()
+    log = runner.run_game()
+    for info in log:
+        desired_dict = {key: val for key, val
+                        in info.__dict__.items()
+                        if key != 'death_queue'}
+        converted_info = DungeonCrawlEngineGameInfo(**desired_dict)
+        print(converted_info)
 
 
 def setup_game() -> DungeonCrawlEngineGameInfo:
