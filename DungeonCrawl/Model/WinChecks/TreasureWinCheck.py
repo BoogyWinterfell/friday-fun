@@ -13,11 +13,6 @@ class TreasureWinCheck(WinCheck, ABC):
         self.treasure_to_win = treasure_to_win
 
     def search_for_winners(self, info: EngineGameInfo) -> List[str]:
-        # # Filter out the attributes that we don't give to the ctor.
-        # desired_dict = {key: val for key, val
-        #                 in info.__dict__.items()
-        #                 if key != 'round_number' and key != 'death_queue'}
-        # game_info = DungeonCrawlEngineGameInfo(**desired_dict)
         winning_bots_names = [name for name, bot in info.players.items() if sum([
             worth for worth in [get_dungeoneer_treasure_worth(d) for d in bot.items if d is Dungeoneer]
         ]) >= self.treasure_to_win]

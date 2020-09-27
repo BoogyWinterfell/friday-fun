@@ -20,10 +20,7 @@ def main():
     runner = GameRunner(engine, info, win_checks, player_info_type)
     log = runner.run_game()
     for info in log:
-        desired_dict = {key: val for key, val
-                        in info.__dict__.items()
-                        if key != 'death_queue'}
-        converted_info = DungeonCrawlEngineGameInfo(**desired_dict)
+        converted_info = DungeonCrawlEngineGameInfo(**info.__dict__)
         print(converted_info)
 
 
