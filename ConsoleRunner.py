@@ -6,6 +6,7 @@ from DungeonCrawl.DungeonCrawlPlayerGameInfo import DungeonCrawlPlayerGameInfo
 from DungeonCrawl.Model.ActionResolvers.MoveActionResolver import MoveActionResolver
 from DungeonCrawl.Model.GameObjects.Abstract.Treasure import Treasure
 from DungeonCrawl.Model.GameObjects.Abstract.Weapon import Weapon
+from DungeonCrawl.Model.GameObjects.DungeonGrid import DungeonGrid
 from DungeonCrawl.Model.GameObjects.Dungeoneer import Dungeoneer
 from DungeonCrawl.Model.GameObjects.Tile import Tile
 from DungeonCrawl.Model.WinChecks.TreasureWinCheck import TreasureWinCheck
@@ -41,7 +42,8 @@ def setup_game() -> DungeonCrawlEngineGameInfo:
              Tile(no_walls), Tile(no_walls), Tile(no_walls, [w2]), Tile(no_walls), Tile(no_walls),
              Tile(no_walls), Tile(no_walls), Tile(no_walls), Tile(no_walls, [w3]), Tile(no_walls),
              Tile(no_walls, [t1]), Tile(no_walls), Tile(no_walls), Tile(no_walls), Tile(no_walls, [p2_dungeoneer])]
-    initial_info = DungeonCrawlEngineGameInfo(bots, tiles, rows=5, columns=5)
+    grid = DungeonGrid(tiles, rows=5, columns=5)
+    initial_info = DungeonCrawlEngineGameInfo(bots, grid)
     return initial_info
 
 
