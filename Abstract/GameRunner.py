@@ -15,6 +15,7 @@ class GameRunner:
         self.initial_state = initial_state
         self.game_log = [self.initial_state]
         self.win_checkers = win_checkers
+        # This attribute is used for instantiating the proper PlayerGameInfo type of the current game.
         self.player_info_type = player_info_type
 
     def run_game(self) -> List[EngineGameInfo]:
