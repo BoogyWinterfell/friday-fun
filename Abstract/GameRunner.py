@@ -1,3 +1,4 @@
+import copy
 from typing import List, Type, Dict
 
 from Abstract.GameAction import GameAction
@@ -41,13 +42,9 @@ class GameRunner:
         self._round_number += 1
         new_game_state.round_number = self._round_number
 
-        self.game_log.append(new_game_state)
         return new_game_state
 
     def read_player_inputs(self, player_inputs: Dict[str, List[GameAction]]) -> EngineGameInfo:
-        game_state = self.game_log[self._round_number]
-        game_state_copy = EngineGameInfo(game_state.players, game_state.max_rounds, game_state.round_number)
-
+        game_state_copy = copy.deepcopy(self.game_log[self._round_number])
         self.engine.resolve_actions(player_inputs, game_state_copy)
-
         return game_state_copy
