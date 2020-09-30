@@ -1,14 +1,12 @@
-from abc import ABC
 from typing import List
 
 from Abstract.EngineGameInfo import EngineGameInfo
 from Abstract.WinCheck import WinCheck
-from DungeonCrawl.DungeonCrawlEngineGameInfo import DungeonCrawlEngineGameInfo
 from DungeonCrawl.DungeonCrawlUtils import get_dungeoneer_treasure_worth
 from DungeonCrawl.Model.GameObjects.Dungeoneer import Dungeoneer
 
 
-class TreasureWinCheck(WinCheck, ABC):
+class TreasureWinCheck(WinCheck):
     def __init__(self, treasure_to_win):
         self.treasure_to_win = treasure_to_win
 
