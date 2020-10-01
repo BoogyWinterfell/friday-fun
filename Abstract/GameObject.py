@@ -2,6 +2,6 @@ from dataclasses import dataclass
 
 
 @dataclass
-class GameAction:
+class GameObject:
     name: str
-    caller_name: str
+    owner_name: str
