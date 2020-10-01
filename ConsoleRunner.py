@@ -39,11 +39,26 @@ def setup_game() -> DungeonCrawlEngineGameInfo:
     w2 = Weapon(name="Weapon2", owner_name="game", initial_x=2, initial_y=2, x_tile=2, y_tile=2)
     w3 = Weapon(name="Weapon3", owner_name="game", initial_x=3, initial_y=3, x_tile=3, y_tile=3)
     no_walls = [False, False, False, False]
-    tiles = [Tile(no_walls, [p1_dungeoneer]), Tile(no_walls), Tile(no_walls), Tile(no_walls), Tile(no_walls, [t2]),
-             Tile(no_walls), Tile(no_walls, [w1]), Tile(no_walls), Tile(no_walls), Tile(no_walls),
-             Tile(no_walls), Tile(no_walls), Tile(no_walls, [w2]), Tile(no_walls), Tile(no_walls),
-             Tile(no_walls), Tile(no_walls), Tile(no_walls), Tile(no_walls, [w3]), Tile(no_walls),
-             Tile(no_walls, [t1]), Tile(no_walls), Tile(no_walls), Tile(no_walls), Tile(no_walls, [p2_dungeoneer])]
+    tiles = [Tile(*no_walls, objects_on_tile=[p1_dungeoneer]), Tile(*no_walls, objects_on_tile=[]),
+             Tile(*no_walls, objects_on_tile=[]), Tile(*no_walls, objects_on_tile=[]),
+             Tile(*no_walls, objects_on_tile=[t2]),
+
+             Tile(*no_walls, objects_on_tile=[]), Tile(*no_walls, objects_on_tile=[w1]),
+             Tile(*no_walls, objects_on_tile=[]), Tile(*no_walls, objects_on_tile=[]),
+             Tile(*no_walls, objects_on_tile=[]),
+
+             Tile(*no_walls, objects_on_tile=[]), Tile(*no_walls, objects_on_tile=[]),
+             Tile(*no_walls, objects_on_tile=[w2]), Tile(*no_walls, objects_on_tile=[]),
+             Tile(*no_walls, objects_on_tile=[]),
+
+             Tile(*no_walls, objects_on_tile=[]), Tile(*no_walls, objects_on_tile=[]),
+             Tile(*no_walls, objects_on_tile=[]), Tile(*no_walls, objects_on_tile=[w3]),
+             Tile(*no_walls, objects_on_tile=[]),
+
+             Tile(*no_walls, objects_on_tile=[t1]), Tile(*no_walls, objects_on_tile=[]),
+             Tile(*no_walls, objects_on_tile=[]), Tile(*no_walls, objects_on_tile=[]),
+             Tile(*no_walls, objects_on_tile=[p2_dungeoneer])]
+
     grid = DungeonGrid(tiles, rows=5, columns=5)
     initial_info = DungeonCrawlEngineGameInfo(max_rounds=500, round_number=0, players=bots, grid=grid, respawn_time=20)
     return initial_info
