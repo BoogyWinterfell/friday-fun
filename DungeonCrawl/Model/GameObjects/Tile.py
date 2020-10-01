@@ -1,14 +1,13 @@
+from dataclasses import dataclass
 from typing import List
 
 from DungeonCrawl.Model.GameObjects.Abstract.DungeonCrawlGameObject import DungeonCrawlGameObject
 
 
+@dataclass
 class Tile(object):
-    def __init__(self, walls_config: List[bool], objects_on_tile: List[DungeonCrawlGameObject] = None):
-        if objects_on_tile is None:
-            objects_on_tile = []
-        self.left_wall = walls_config[0]
-        self.top_wall = walls_config[1]
-        self.right_wall = walls_config[2]
-        self.bottom_wall = walls_config[3]
-        self.objects_on_tile = objects_on_tile
+    left_wall: bool
+    top_wall: bool
+    right_wall: bool
+    bottom_wall: bool
+    objects_on_tile: List[DungeonCrawlGameObject]
