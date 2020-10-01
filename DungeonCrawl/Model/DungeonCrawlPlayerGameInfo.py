@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 from Abstract.PlayerGameInfo import PlayerGameInfo
-from DungeonCrawl.DungeonCrawlEngineGameInfo import DungeonCrawlEngineGameInfo
+from DungeonCrawl.Model.DungeonCrawlEngineGameInfo import DungeonCrawlEngineGameInfo
 from DungeonCrawl.Model.GameObjects.DungeonGrid import DungeonGrid
 
 

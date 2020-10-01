@@ -3,7 +3,7 @@ from typing import List
 from Abstract.ActionResolver import ActionResolver
 from Abstract.GameAction import GameAction
 from Abstract.EngineGameInfo import EngineGameInfo
-from DungeonCrawl.DungeonCrawlEngineGameInfo import DungeonCrawlEngineGameInfo
+from DungeonCrawl.Model.DungeonCrawlEngineGameInfo import DungeonCrawlEngineGameInfo
 from DungeonCrawl.DungeonCrawlUtils import count_dungeoneer_weapons, get_dungeoneer_items_by_type
 from DungeonCrawl.Model.Actions.MoveAction import MoveAction
 from DungeonCrawl.Model.GameObjects.Abstract.DungeonCrawlGameObject import DungeonCrawlGameObject

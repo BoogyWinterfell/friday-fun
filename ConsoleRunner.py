@@ -1,15 +1,15 @@
 from Abstract.Bot import Bot
 from Abstract.GameRunner import GameRunner
-from DungeonCrawl.DungeonCrawlGameEngine import DungeonCrawlGameEngine
-from DungeonCrawl.DungeonCrawlEngineGameInfo import DungeonCrawlEngineGameInfo
-from DungeonCrawl.DungeonCrawlPlayerGameInfo import DungeonCrawlPlayerGameInfo
-from DungeonCrawl.Model.ActionResolvers.MoveActionResolver import MoveActionResolver
+from DungeonCrawl.Model.DungeonCrawlGameEngine import DungeonCrawlGameEngine
+from DungeonCrawl.Model.DungeonCrawlEngineGameInfo import DungeonCrawlEngineGameInfo
+from DungeonCrawl.Model.DungeonCrawlPlayerGameInfo import DungeonCrawlPlayerGameInfo
+from DungeonCrawl.ActionResolvers.MoveActionResolver import MoveActionResolver
 from DungeonCrawl.Model.GameObjects.Abstract.Treasure import Treasure
 from DungeonCrawl.Model.GameObjects.Abstract.Weapon import Weapon
 from DungeonCrawl.Model.GameObjects.DungeonGrid import DungeonGrid
 from DungeonCrawl.Model.GameObjects.Dungeoneer import Dungeoneer
 from DungeonCrawl.Model.GameObjects.Tile import Tile
-from DungeonCrawl.Model.WinChecks.TreasureWinCheck import TreasureWinCheck
+from DungeonCrawl.WinChecks.TreasureWinCheck import TreasureWinCheck
 
 
 def main():
