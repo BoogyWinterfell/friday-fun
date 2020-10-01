@@ -1,6 +1,7 @@
-from typing import TypedDict
+from dataclasses import dataclass
 
 
-class GameObject(TypedDict):
+@dataclass
+class GameObject:
     name: str
     owner_name: str

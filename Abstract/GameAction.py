@@ -1,6 +1,7 @@
-from typing import TypedDict
+from dataclasses import dataclass
 
 
-class GameAction(TypedDict):
+@dataclass
+class GameAction:
     name: str
     caller_name: str

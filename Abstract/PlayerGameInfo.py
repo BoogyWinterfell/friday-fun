@@ -1,7 +1,10 @@
+import abc
+from dataclasses import dataclass
+
 from Abstract.GameInfoBase import GameInfoBase
 
 
-class PlayerGameInfo(GameInfoBase):
-    def __init__(self, game_info: GameInfoBase):
-        super().__init__(game_info.max_rounds, game_info.round_number)
-        self.game_info = game_info
+# This class prevents circular referencing between Bot and EngineGameInfo.
+@dataclass
+class PlayerGameInfo(GameInfoBase, metaclass=abc.ABCMeta):
+    pass
