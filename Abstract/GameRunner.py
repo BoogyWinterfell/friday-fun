@@ -1,22 +1,23 @@
 import copy
-from typing import List, Type, Dict
+from typing import List, Type, Dict, Callable
 
 from Abstract.GameAction import GameAction
 from Abstract.GameEngine import GameEngine
 from Abstract.EngineGameInfo import EngineGameInfo
+from Abstract.PlayerGameInfo import PlayerGameInfo
 from Abstract.WinCheck import WinCheck
 
 
 class GameRunner:
     def __init__(self, engine: GameEngine, initial_state: EngineGameInfo, win_checkers: List[WinCheck],
-                 player_info_type: Type):
+                 info_conversion: Callable):
         self._round_number = 0
         self.engine = engine
         self.initial_state = initial_state
         self.game_log = [self.initial_state]
         self.win_checkers = win_checkers
         # This attribute is used for instantiating the proper PlayerGameInfo type of the current game.
-        self.player_info_type = player_info_type
+        self.info_conversion = info_conversion
 
     def run_game(self) -> List[EngineGameInfo]:
         for i in range(0, self.game_log[0].max_rounds):
@@ -36,7 +37,7 @@ class GameRunner:
         for name, player in current_state.players.items():
             # TODO: exception handling
             # Look here I'm using the type from before to instantiate the proper info type.
-            player_inputs[name] = player.play_round(self.player_info_type(current_state))
+            player_inputs[name] = player.play_round(self.info_conversion(current_state))
 
         new_game_state = self.read_player_inputs(player_inputs)
 

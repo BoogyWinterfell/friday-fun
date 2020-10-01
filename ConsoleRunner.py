@@ -16,8 +16,7 @@ def main():
     engine = DungeonCrawlGameEngine([MoveActionResolver()])
     info = setup_game()
     win_checks = [TreasureWinCheck(2)]
-    player_info_type = DungeonCrawlPlayerGameInfo
-    runner = GameRunner(engine, info, win_checks, player_info_type)
+    runner = GameRunner(engine, info, win_checks, DungeonCrawlPlayerGameInfo.from_engine_game_info)
     log = runner.run_game()
     for info in log:
         converted_info = DungeonCrawlEngineGameInfo(**info.__dict__)
@@ -46,7 +45,7 @@ def setup_game() -> DungeonCrawlEngineGameInfo:
              Tile(no_walls), Tile(no_walls), Tile(no_walls), Tile(no_walls, [w3]), Tile(no_walls),
              Tile(no_walls, [t1]), Tile(no_walls), Tile(no_walls), Tile(no_walls), Tile(no_walls, [p2_dungeoneer])]
     grid = DungeonGrid(tiles, rows=5, columns=5)
-    initial_info = DungeonCrawlEngineGameInfo(bots, grid)
+    initial_info = DungeonCrawlEngineGameInfo(max_rounds=500, round_number=0, players=bots, grid=grid, respawn_time=20)
     return initial_info
 
 
