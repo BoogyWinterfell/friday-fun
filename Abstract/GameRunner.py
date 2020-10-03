@@ -1,10 +1,9 @@
 import copy
-from typing import List, Type, Dict, Callable
+from typing import List, Dict, Callable
 
+from Abstract.EngineGameInfo import EngineGameInfo
 from Abstract.GameAction import GameAction
 from Abstract.GameEngine import GameEngine
-from Abstract.EngineGameInfo import EngineGameInfo
-from Abstract.PlayerGameInfo import PlayerGameInfo
 from Abstract.WinCheck import WinCheck
 
 
@@ -34,10 +33,10 @@ class GameRunner:
     def run_round(self) -> EngineGameInfo:
         player_inputs = {}
         current_state = self.game_log[self._round_number]
-        for name, player in current_state.players.items():
+        for player in current_state.players:
             # TODO: exception handling
             # Look here I'm using the type from before to instantiate the proper info type.
-            player_inputs[name] = player.play_round(self.info_conversion(current_state))
+            player_inputs[player.name] = player.play_round(self.info_conversion(current_state))
 
         new_game_state = self.read_player_inputs(player_inputs)
 
