@@ -1,9 +1,8 @@
 from dataclasses import dataclass
-from queue import Queue
-from typing import Dict
+from typing import List
 
-from Abstract.Bot import Bot
 from Abstract.EngineGameInfo import EngineGameInfo
+from DungeonCrawl.Model.GameObjects.Abstract.DungeonCrawlBot import DungeonCrawlBot
 from DungeonCrawl.Model.GameObjects.DungeonGrid import DungeonGrid
 
 
@@ -11,4 +10,5 @@ from DungeonCrawl.Model.GameObjects.DungeonGrid import DungeonGrid
 class DungeonCrawlEngineGameInfo(EngineGameInfo):
     grid: DungeonGrid
     respawn_time: int
+    players: List[DungeonCrawlBot]
     # TODO: Implement death queue.
