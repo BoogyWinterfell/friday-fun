@@ -1,14 +1,13 @@
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 from DungeonCrawl.Model.GameObjects.Tile import Tile
 
 
 class DungeonGrid(object):
-    def __init__(self, tiles: List[Tile], rows: int, columns: int):
-        self.tiles: List[Tile] = tiles
+    def __init__(self, tiles: Dict[Tuple[int, int], Tile], rows: int, columns: int):
         self.rows = rows
         self.columns = columns
+        self.tiles: Dict[Tuple[int, int], Tile] = tiles
 
-    def __getitem__(self, pos: Tuple[int, int]):
-        row, column = pos
-        return self.tiles[(self.rows * row) + column]
+    def __getitem__(self, position: Tuple[int, int]):
+        return self.tiles[position]

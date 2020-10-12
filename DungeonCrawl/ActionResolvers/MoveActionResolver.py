@@ -49,7 +49,7 @@ class MoveActionResolver(ActionResolver):
                 if isinstance(item, Dungeoneer):
                     dungeoneers.append(item)
 
-        for tile in game_state.grid.tiles:
+        for pos, tile in game_state.grid.tiles.items():
             # Will be changed to all hostiles and dungeoneers later.
             dungeoneers = [x for x in tile.objects_on_tile if isinstance(x, Dungeoneer)]
             if len(dungeoneers) < 2:
