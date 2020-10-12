@@ -10,10 +10,10 @@ def test_move_works():
     initial_info = get_default_game()
     initial_grid = initial_info.grid
     expected_grid = copy.deepcopy(initial_grid)
-    dungeoneer_to_add = expected_grid.map[0][0].objects_on_tile[0]
+    dungeoneer_to_add = expected_grid[0, 0].objects_on_tile[0]
     dungeoneer_to_add.y_tile = 1
-    expected_grid.map[0][1].objects_on_tile.append(dungeoneer_to_add)
-    expected_grid.map[0][0].objects_on_tile.clear()
+    expected_grid[0, 1].objects_on_tile.append(dungeoneer_to_add)
+    expected_grid[0, 0].objects_on_tile.clear()
 
     action1 = MoveAction(name="move", caller_name="coco", moved_object_name="cocoKnight", direction=1)
 
@@ -22,4 +22,4 @@ def test_move_works():
     resolved_info = resolver.resolve_action(actions=[action1], game_state=initial_info)
     # Assert
 
-    assert expected_grid.map == resolved_info.grid.map
+    assert expected_grid.tiles == resolved_info.grid.tiles

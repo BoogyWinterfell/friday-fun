@@ -49,20 +49,19 @@ class MoveActionResolver(ActionResolver):
                 if isinstance(item, Dungeoneer):
                     dungeoneers.append(item)
 
-        for row in game_state.grid.map:
-            for tile in row:
-                # Will be changed to all hostiles and dungeoneers later.
-                dungeoneers = [x for x in tile.objects_on_tile if isinstance(x, Dungeoneer)]
-                if len(dungeoneers) < 2:
-                    continue
-                weapons_count = [count_dungeoneer_weapons(d) for d in dungeoneers]
-                max_weapons = max(weapons_count)
-                fight_winners = [d for d in dungeoneers if count_dungeoneer_weapons(d) == max_weapons]
-                fight_losers = [d for d in dungeoneers if count_dungeoneer_weapons(d) < max_weapons]
-                self.update_losers(fight_losers, game_state)
+        for tile in game_state.grid.tiles:
+            # Will be changed to all hostiles and dungeoneers later.
+            dungeoneers = [x for x in tile.objects_on_tile if isinstance(x, Dungeoneer)]
+            if len(dungeoneers) < 2:
+                continue
+            weapons_count = [count_dungeoneer_weapons(d) for d in dungeoneers]
+            max_weapons = max(weapons_count)
+            fight_winners = [d for d in dungeoneers if count_dungeoneer_weapons(d) == max_weapons]
+            fight_losers = [d for d in dungeoneers if count_dungeoneer_weapons(d) < max_weapons]
+            self.update_losers(fight_losers, game_state)
 
-                max_weapon_losers = max([count_dungeoneer_weapons(d) for d in fight_losers])
-                self.update_winners(fight_winners, game_state, max_weapon_losers)
+            max_weapon_losers = max([count_dungeoneer_weapons(d) for d in fight_losers])
+            self.update_winners(fight_winners, game_state, max_weapon_losers)
 
         return game_state
 
@@ -87,10 +86,10 @@ class MoveActionResolver(ActionResolver):
 
     def move_object_between_tiles(self, game_state: DungeonCrawlEngineGameInfo, object_to_move: DungeonCrawlGameObject,
                                   current_x: int, current_y: int, x, y):
-        game_state.grid.map[current_x][current_y].objects_on_tile.remove(object_to_move)
+        game_state.grid[current_x, current_y].objects_on_tile.remove(object_to_move)
         self.move_object_to_tile(game_state, object_to_move, x, y)
 
     def move_object_to_tile(self, game_state: DungeonCrawlEngineGameInfo, object_to_move: DungeonCrawlGameObject, x, y):
         object_to_move.x_tile = x
         object_to_move.y_tile = y
-        game_state.grid.map[x][y].objects_on_tile.append(object_to_move)
+        game_state.grid[x, y].objects_on_tile.append(object_to_move)
