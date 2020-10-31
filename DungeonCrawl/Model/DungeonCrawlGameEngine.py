@@ -10,5 +10,5 @@ class DungeonCrawlGameEngine(GameEngine):
     def __init__(self, resolvers: List[ActionResolver]):
         self.resolvers = resolvers
 
-    def resolve_actions(self, actions: Dict[str, List[GameAction]], game_state: EngineGameInfo):
+    def resolve_actions(self, actions: Dict[str, List[GameAction]], game_state: GameInfo):
         pass

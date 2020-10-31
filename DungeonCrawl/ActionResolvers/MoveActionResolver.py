@@ -3,7 +3,7 @@ from typing import List
 from Abstract.ActionResolver import ActionResolver
 from Abstract.GameInfo import GameInfo
 from Abstract.GameAction import GameAction
-from DungeonCrawl.DungeonCrawlUtils import count_dungeoneer_weapons, get_dungeoneer_items_by_type
+from DungeonCrawl.DungeonCrawlUtils import count_dungeoneer_weapons, get_dungeoneer_items_by_type, get_objects_on_tile
 from DungeonCrawl.Model.Actions.MoveAction import MoveAction
 from DungeonCrawl.Model.DungeonCrawlGameInfo import DungeonCrawlGameInfo
 from DungeonCrawl.Model.GameObjects.Abstract.DungeonCrawlGameObject import DungeonCrawlGameObject
@@ -51,7 +51,7 @@ class MoveActionResolver(ActionResolver):
 
         for pos, tile in game_state.grid.tiles.items():
             # Will be changed to all hostiles and dungeoneers later.
-            dungeoneers = [x for x in tile.objects_on_tile if isinstance(x, Dungeoneer)]
+            dungeoneers = [x for x in get_objects_on_tile(game_state,tile) if isinstance(x, Dungeoneer)]
             if len(dungeoneers) < 2:
                 continue
             weapons_count = [count_dungeoneer_weapons(d) for d in dungeoneers]

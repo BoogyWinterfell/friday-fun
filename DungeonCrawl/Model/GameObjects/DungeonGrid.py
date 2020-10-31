@@ -1,4 +1,4 @@
-from typing import List, Tuple, Dict
+from typing import Tuple, Dict
 
 from DungeonCrawl.Model.GameObjects.Tile import Tile
 

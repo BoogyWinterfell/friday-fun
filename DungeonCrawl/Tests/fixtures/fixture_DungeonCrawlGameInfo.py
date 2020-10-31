@@ -1,6 +1,6 @@
 from typing import Dict, Tuple
 
-from DungeonCrawl.Model.DungeonCrawlEngineGameInfo import DungeonCrawlEngineGameInfo
+from DungeonCrawl.Model.DungeonCrawlGameInfo import DungeonCrawlGameInfo
 from DungeonCrawl.Model.GameObjects.Abstract.Treasure import Treasure
 from DungeonCrawl.Model.GameObjects.Abstract.Weapon import Weapon
 from DungeonCrawl.Model.GameObjects.DungeonGrid import DungeonGrid
@@ -16,7 +16,7 @@ def get_default_game() -> DungeonCrawlGameInfo:
     bots[0].items.append(p1_dungeoneer)
 
     p2_dungeoneer = \
-        Dungeoneer(name="JumboKnight", owner_name="Jumbo", x_tile=0, y_tile=0, initial_x=0, initial_y=0, items=[])
+        Dungeoneer(name="JumboKnight", owner_name="Jumbo", x_tile=4, y_tile=4, initial_x=4, initial_y=4, items=[])
     bots[1].items.append(p2_dungeoneer)
 
     t1 = Treasure(name="coin1", owner_name="game", value=1, initial_x=0, initial_y=4, x_tile=1, y_tile=1)
@@ -26,32 +26,32 @@ def get_default_game() -> DungeonCrawlGameInfo:
     w3 = Weapon(name="Weapon3", owner_name="game", initial_x=3, initial_y=3, x_tile=3, y_tile=3)
     no_walls = [False, False, False, False]
 
-    tiles: Dict[Tuple[int, int], Tile] = {(0, 0): Tile(*no_walls, objects_on_tile=[p1_dungeoneer]),
-                                          (0, 1): Tile(*no_walls, objects_on_tile=[]),
-                                          (0, 2): Tile(*no_walls, objects_on_tile=[]),
-                                          (0, 3): Tile(*no_walls, objects_on_tile=[]),
-                                          (0, 4): Tile(*no_walls, objects_on_tile=[t2]),
-                                          (1, 0): Tile(*no_walls, objects_on_tile=[]),
-                                          (1, 1): Tile(*no_walls, objects_on_tile=[w1]),
-                                          (1, 2): Tile(*no_walls, objects_on_tile=[]),
-                                          (1, 3): Tile(*no_walls, objects_on_tile=[]),
-                                          (1, 4): Tile(*no_walls, objects_on_tile=[]),
-                                          (2, 0): Tile(*no_walls, objects_on_tile=[]),
-                                          (2, 1): Tile(*no_walls, objects_on_tile=[]),
-                                          (2, 2): Tile(*no_walls, objects_on_tile=[w2]),
-                                          (2, 3): Tile(*no_walls, objects_on_tile=[]),
-                                          (2, 4): Tile(*no_walls, objects_on_tile=[]),
-                                          (3, 0): Tile(*no_walls, objects_on_tile=[]),
-                                          (3, 1): Tile(*no_walls, objects_on_tile=[]),
-                                          (3, 2): Tile(*no_walls, objects_on_tile=[]),
-                                          (3, 3): Tile(*no_walls, objects_on_tile=[w3]),
-                                          (3, 4): Tile(*no_walls, objects_on_tile=[]),
-                                          (4, 0): Tile(*no_walls, objects_on_tile=[t1]),
-                                          (4, 1): Tile(*no_walls, objects_on_tile=[]),
-                                          (4, 2): Tile(*no_walls, objects_on_tile=[]),
-                                          (4, 3): Tile(*no_walls, objects_on_tile=[]),
-                                          (4, 4): Tile(*no_walls, objects_on_tile=[p2_dungeoneer])}
+    tiles: Dict[Tuple[int, int], Tile] = {(0, 0): Tile(*no_walls),
+                                          (0, 1): Tile(*no_walls),
+                                          (0, 2): Tile(*no_walls),
+                                          (0, 3): Tile(*no_walls),
+                                          (0, 4): Tile(*no_walls),
+                                          (1, 0): Tile(*no_walls),
+                                          (1, 1): Tile(*no_walls),
+                                          (1, 2): Tile(*no_walls),
+                                          (1, 3): Tile(*no_walls),
+                                          (1, 4): Tile(*no_walls),
+                                          (2, 0): Tile(*no_walls),
+                                          (2, 1): Tile(*no_walls),
+                                          (2, 2): Tile(*no_walls),
+                                          (2, 3): Tile(*no_walls),
+                                          (2, 4): Tile(*no_walls),
+                                          (3, 0): Tile(*no_walls),
+                                          (3, 1): Tile(*no_walls),
+                                          (3, 2): Tile(*no_walls),
+                                          (3, 3): Tile(*no_walls),
+                                          (3, 4): Tile(*no_walls),
+                                          (4, 0): Tile(*no_walls),
+                                          (4, 1): Tile(*no_walls),
+                                          (4, 2): Tile(*no_walls),
+                                          (4, 3): Tile(*no_walls),
+                                          (4, 4): Tile(*no_walls)}
 
     grid = DungeonGrid(tiles, rows=5, columns=5)
-    initial_info = DungeonCrawlEngineGameInfo(max_rounds=500, round_number=0, players=bots, grid=grid, respawn_time=20)
+    initial_info = DungeonCrawlGameInfo(max_rounds=500, round_number=0, players=bots, grid=grid, respawn_time=20)
     return initial_info
