@@ -11,7 +11,7 @@ def main():
     engine = DungeonCrawlGameEngine([MoveActionResolver()])
     info = get_default_game()
     win_checks = [TreasureWinCheck(2)]
-    runner = GameRunner(engine, info, win_checks, DungeonCrawlUtils.player_info_from_engine_game_info)
+    runner = GameRunner(engine, info, win_checks, DungeonCrawlUtils.player_info_from_engine_game_info, info.players)
     log = runner.run_game()
     for info in log:
         converted_info = DungeonCrawlGameInfo(**info.__dict__)

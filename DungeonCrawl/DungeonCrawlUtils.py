@@ -1,5 +1,6 @@
 from typing import Type, List
 
+from DungeonCrawl.Model.DungeonCrawlBotInfo import DungeonCrawlBotInfo
 from DungeonCrawl.Model.DungeonCrawlGameInfo import DungeonCrawlGameInfo
 from DungeonCrawl.Model.DungeonCrawlPlayerGameInfo import DungeonCrawlPlayerGameInfo
 from DungeonCrawl.Model.GameObjects.Abstract.DungeonCrawlGameObject import DungeonCrawlGameObject
@@ -22,7 +23,7 @@ def get_dungeoneer_treasure_worth(dungeoneer: Dungeoneer):
 
 
 def player_info_from_engine_game_info(info: DungeonCrawlGameInfo):
-    return DungeonCrawlPlayerGameInfo(info.max_rounds, info.round_number, info.respawn_time, info.grid)
+    all_bots_info = [DungeonCrawlBotInfo(player.info.items) for player in info.players]
 
 
 def get_objects_on_tile(info: DungeonCrawlGameInfo, tile: Tile):
@@ -32,5 +33,5 @@ def get_objects_on_tile(info: DungeonCrawlGameInfo, tile: Tile):
 
 def get_all_objects(info: DungeonCrawlGameInfo) -> List[DungeonCrawlGameObject]:
     objects = []
-    [objects.extend(items) for items in [player.items for player in info.players]]
+    [objects.extend(items) for items in [player.info.items for player in info.players]]
     return objects

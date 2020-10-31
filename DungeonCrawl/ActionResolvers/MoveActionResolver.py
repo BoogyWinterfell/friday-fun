@@ -29,7 +29,7 @@ class MoveActionResolver(ActionResolver):
         if len(player) != 1:
             raise Exception("There were" + str(len(player)) + "players instead of 1.")
 
-        moving_items = [item for item in player[0].items if item.name == action.moved_object_name]
+        moving_items = [item for item in player[0].info.items if item.name == action.moved_object_name]
         if len(moving_items) > 1:
             raise Exception("There were at least two items with the same name.")
 
@@ -42,7 +42,7 @@ class MoveActionResolver(ActionResolver):
                                            current_y + y_move)
 
     def resolve_collisions(self, game_state: DungeonCrawlGameInfo) -> GameInfo:
-        players_items = [player.items for player in game_state.players]
+        players_items = [player.info.items for player in game_state.players]
         dungeoneers = []
         for items in players_items:
             for item in items:
