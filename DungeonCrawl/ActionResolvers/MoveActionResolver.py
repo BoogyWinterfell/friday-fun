@@ -13,7 +13,7 @@ from DungeonCrawl.Model.GameObjects.Dungeoneer import Dungeoneer
 
 class MoveActionResolver(ActionResolver):
     def __init__(self):
-        self.direction_resolve_dict = {1: (0, 1), 2: (1, 0), 3: (0, -1), 4: (-1, 0)}
+        self.direction_resolve_dict = {"down": (0, 1), "right": (1, 0), "up": (0, -1), "left": (-1, 0)}
 
     def resolve_action(self, actions: List[GameAction], game_state: GameInfo) -> GameInfo:
         info = DungeonCrawlGameInfo(**game_state.__dict__)
