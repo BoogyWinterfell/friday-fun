@@ -1,13 +1,13 @@
 from dataclasses import dataclass
 from typing import List
 
-from Abstract.EngineGameInfo import EngineGameInfo
+from Abstract.GameInfo import GameInfo
 from DungeonCrawl.Model.GameObjects.Abstract.DungeonCrawlBot import DungeonCrawlBot
 from DungeonCrawl.Model.GameObjects.DungeonGrid import DungeonGrid
 
 
 @dataclass
-class DungeonCrawlEngineGameInfo(EngineGameInfo):
+class DungeonCrawlGameInfo(GameInfo):
     grid: DungeonGrid
     respawn_time: int
     players: List[DungeonCrawlBot]

@@ -9,7 +9,7 @@ from DungeonCrawl.Model.GameObjects.Tile import Tile
 from DungeonCrawl.Tests.fixtures.fixture_DumbBot import DumbBot
 
 
-def get_default_game() -> DungeonCrawlEngineGameInfo:
+def get_default_game() -> DungeonCrawlGameInfo:
     bots = [DumbBot(name="coco", items=[]), DumbBot(name="Jumbo", items=[])]
     p1_dungeoneer = \
         Dungeoneer(name="cocoKnight", owner_name="coco", x_tile=0, y_tile=0, initial_x=0, initial_y=0, items=[])

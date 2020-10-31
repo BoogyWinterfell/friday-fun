@@ -1,11 +1,11 @@
 from typing import List
 
 from Abstract.ActionResolver import ActionResolver
-from Abstract.EngineGameInfo import EngineGameInfo
+from Abstract.GameInfo import GameInfo
 from Abstract.GameAction import GameAction
 from DungeonCrawl.DungeonCrawlUtils import count_dungeoneer_weapons, get_dungeoneer_items_by_type
 from DungeonCrawl.Model.Actions.MoveAction import MoveAction
-from DungeonCrawl.Model.DungeonCrawlEngineGameInfo import DungeonCrawlEngineGameInfo
+from DungeonCrawl.Model.DungeonCrawlGameInfo import DungeonCrawlGameInfo
 from DungeonCrawl.Model.GameObjects.Abstract.DungeonCrawlGameObject import DungeonCrawlGameObject
 from DungeonCrawl.Model.GameObjects.Abstract.Weapon import Weapon
 from DungeonCrawl.Model.GameObjects.Dungeoneer import Dungeoneer
@@ -15,8 +15,8 @@ class MoveActionResolver(ActionResolver):
     def __init__(self):
         self.direction_resolve_dict = {1: (0, 1), 2: (1, 0), 3: (0, -1), 4: (-1, 0)}
 
-    def resolve_action(self, actions: List[GameAction], game_state: EngineGameInfo) -> EngineGameInfo:
-        info = DungeonCrawlEngineGameInfo(**game_state.__dict__)
+    def resolve_action(self, actions: List[GameAction], game_state: GameInfo) -> GameInfo:
+        info = DungeonCrawlGameInfo(**game_state.__dict__)
         for action in [action for action in actions if type(action) == MoveAction]:
             move = MoveAction(**action.__dict__)
             self.move_entity(move, info)
@@ -24,7 +24,7 @@ class MoveActionResolver(ActionResolver):
         new_game_state = self.resolve_collisions(info)
         return new_game_state
 
-    def move_entity(self, action: MoveAction, game_state: DungeonCrawlEngineGameInfo):
+    def move_entity(self, action: MoveAction, game_state: DungeonCrawlGameInfo):
         player = [p for p in game_state.players if p.name == action.caller_name]
         if len(player) != 1:
             raise Exception("There were" + str(len(player)) + "players instead of 1.")
@@ -41,7 +41,7 @@ class MoveActionResolver(ActionResolver):
             self.move_object_between_tiles(game_state, moving_item, current_x, current_y, current_x + x_move,
                                            current_y + y_move)
 
-    def resolve_collisions(self, game_state: DungeonCrawlEngineGameInfo) -> EngineGameInfo:
+    def resolve_collisions(self, game_state: DungeonCrawlGameInfo) -> GameInfo:
         players_items = [player.items for player in game_state.players]
         dungeoneers = []
         for items in players_items:
@@ -84,12 +84,12 @@ class MoveActionResolver(ActionResolver):
 
     # TODO: Consider moving these functions to utilities, Reconsider entire Pure Data Design Decision.
 
-    def move_object_between_tiles(self, game_state: DungeonCrawlEngineGameInfo, object_to_move: DungeonCrawlGameObject,
+    def move_object_between_tiles(self, game_state: DungeonCrawlGameInfo, object_to_move: DungeonCrawlGameObject,
                                   current_x: int, current_y: int, x, y):
         game_state.grid[current_x, current_y].objects_on_tile.remove(object_to_move)
         self.move_object_to_tile(game_state, object_to_move, x, y)
 
-    def move_object_to_tile(self, game_state: DungeonCrawlEngineGameInfo, object_to_move: DungeonCrawlGameObject, x, y):
+    def move_object_to_tile(self, game_state: DungeonCrawlGameInfo, object_to_move: DungeonCrawlGameObject, x, y):
         object_to_move.x_tile = x
         object_to_move.y_tile = y
         game_state.grid[x, y].objects_on_tile.append(object_to_move)

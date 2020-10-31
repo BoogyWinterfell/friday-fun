@@ -1,7 +1,7 @@
 from typing import List, Dict
 
 from Abstract.ActionResolver import ActionResolver
-from Abstract.EngineGameInfo import EngineGameInfo
+from Abstract.GameInfo import GameInfo
 from Abstract.GameAction import GameAction
 from Abstract.GameEngine import GameEngine
 
