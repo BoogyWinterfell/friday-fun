@@ -2,10 +2,10 @@ import abc
 from dataclasses import dataclass
 from typing import List
 
-from Abstract.Bot import Bot
+from Abstract.BotInfo import BotInfo
 from Abstract.GameInfoBase import GameInfoBase
 
 
 @dataclass
-class EngineGameInfo(GameInfoBase, metaclass=abc.ABCMeta):
-    players: List[Bot]
+class GameInfo(GameInfoBase, metaclass=abc.ABCMeta):
+    players: List[BotInfo]
